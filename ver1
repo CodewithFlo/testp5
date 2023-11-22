@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    let boxWidth = 400;
+    let boxHeight = 400;
+    let centerX, centerY;
+    let pointerX, pointerY;
+
+    function setup() {
+      createCanvas(600, 600);
+      centerX = width / 2;
+      centerY = height / 2;
+      pointerX = centerX;
+      pointerY = centerY;
+    }
+
+    function draw() {
+      background(255);
+
+      // Draw the interactive box
+      stroke(0);
+      strokeWeight(2);
+      noFill();
+      rect(centerX - boxWidth / 2, centerY - boxHeight / 2, boxWidth, boxHeight);
+
+      // Draw X and Y axes labels
+      textSize(16);
+      textAlign(CENTER, CENTER);
+      fill(0);
+      text('Pleasant', centerX, centerY + boxHeight / 2 + 20);
+      text('Unpleasant', centerX, centerY - boxHeight / 2 - 20);
+      text('Calm', centerX - boxWidth / 2 - 20, centerY);
+      text('Activated', centerX + boxWidth / 2 + 20, centerY);
+
+      // Draw the circle pointer
+      fill(50, 0, 150);
+      ellipse(pointerX, pointerY, 20, 20);
+    }
+
+    function mouseMoved() {
+      // Update the position of the circle pointer based on mouse movement
+      pointerX = constrain(mouseX, centerX - boxWidth / 2, centerX + boxWidth / 2);
+      pointerY = constrain(mouseY, centerY - boxHeight / 2, centerY + boxHeight / 2);
+    }
+  </script>
+</body>
+</html>
